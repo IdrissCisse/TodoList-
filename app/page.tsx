@@ -53,8 +53,8 @@ export default function Home() {
     }
   };
   return (
-    <div className="w-screen h-screen p-10">
-      <main className="flex flex-col gap-8 row-start-2 items-center justify-center  text-3xl">
+    <div className="w-screen h-screen p-10 flex flex-col items-center">
+      <main className="flex flex-col gap-8 row-start-2 w-3/5 items-center justify-center  text-3xl">
         <h1 className={`${philosopher.className} mb-7 text-4xl`}>TODOLIST</h1>
         <div className="flex ">
           <input
@@ -77,43 +77,51 @@ export default function Home() {
             />
           </button>
         </div>
-        <ul>
+        <ul className="mt-10 w-full bg-red flex flex-col gap-y-4">
           {tasks.map((task) => (
-            <li key={task.id}>
-              <span>{task.text} </span>
-              <button onClick={() => toggleTaskCompletion(task.id)}>
-                {task.completed ? (
-                  <Image
-                    className="dark:invert"
-                    src="/check-box-svgrepo-com.svg"
-                    alt="Task completed"
-                    width={20}
-                    height={20}
-                  />
-                ) : (
-                  <Image
-                    className="dark:invert"
-                    src="/check-box-unchecked-svgrepo-com.svg"
-                    alt="Task completed"
-                    width={20}
-                    height={20}
-                  />
-                )}
-              </button>
-              <button onClick={() => deleteTask(task.id)}> <Image
-                className="dark:invert"
-                src="/delete-1487-svgrepo-com.svg"
-                alt="Task completed"
-                width={20}
-                height={20}
-              /></button>
+            <li key={task.id} className="flex justify-between  border-2 border-black-100 shadow py-2 px-5">
+              <span className="text-xl mr-2">{task.text} </span>
+              <div className="flex gap-4 ">
+                <button onClick={() => toggleTaskCompletion(task.id)}>
+                  {task.completed ? (
+                    <Image
+                      className="dark:invert"
+                      src="/check-box-svgrepo-com.svg"
+                      alt="Task completed"
+                      width={20}
+                      height={20}
+                    />
+                  ) : (
+                    <Image
+                      className="dark:invert"
+                      src="/check-box-unchecked-svgrepo-com.svg"
+                      alt="Task completed"
+                      width={20}
+                      height={20}
+                    />
+                  )}
+                </button>
+                <button onClick={() => deleteTask(task.id)}> <Image
+                  className="dark:invert"
+                  src="/delete-1487-svgrepo-com.svg"
+                  alt="Task completed"
+                  width={20}
+                  height={20}
+                /></button>
+              </div>
             </li>
           ))}
         </ul>
       </main>
-      <footer className="">
-        Go to nextjs.org →
-
+      <footer className="mt-6 mb-5">
+        <a href="https://github.com/IdrissCisse/TodoList-">
+          <Image
+            src="/github-icon.svg"
+            alt="Github link"
+            width={35}
+            height={35}
+          />
+        </a>
       </footer>
     </div>
   );
